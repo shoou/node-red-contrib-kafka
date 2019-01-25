@@ -1,0 +1,31 @@
+{
+  "name": "red-contrib-kafka-node-bis",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Suezenv/node-red-contrib-kafka-node-bis.git"
+  },
+  "keywords": [
+    "node-red",
+    "kafka",
+    "kafka producer",
+    "kafka consumer",
+    "nodered",
+    "nodered kafka"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "node-red": {
+    "nodes": {
+      "kafka-node": "kafka-node.js"
+    }
+  },
+  "dependencies": {
+    "kafka-node": "^4.0.0"
+  }
+}

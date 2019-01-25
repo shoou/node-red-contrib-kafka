@@ -1,0 +1,139 @@
+<script type="text/javascript">
+  RED.nodes.registerType('kafka-in', {
+    category: 'input',
+    color: '#FFFFFF',
+    defaults: {
+      kafkaHost: {value: '', required: true },
+      topics: { value: '', required: true },
+      groupId: { value: '', required: true },
+      autoCommit: { value: true, required: true },
+      fetchMaxBytes: { value: 1024 * 1024 },
+      connectTimeout: { value: '' },
+      delayConsumerCreation: { value: true, required: true },
+      debug: { value: '' },
+    },
+    inputs: 0,
+    outputs: 1,
+    icon: 'kafka.png',
+    label: function() {
+      return this.name || 'Kafka in';
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="kafka-in">
+  <div class="form-row">
+    <label for="node-input-kafkaHost"><i class="icon-tag"></i>Kafka Host</label>
+    <input type="text" id="node-input-kafkaHost" placeholder="127.0.0.1:9092">
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-topics"><i class="icon-tag"></i>Topic(s)</label>
+      <input type="text" id="node-input-topics" placeholder="topic1, topic2, topic3">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-groupId"><i class="icon-tag"></i>Group Id</label>
+    <input type="text" id="node-input-groupId" placeholder="group_id">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-autoCommit"><i class="icon-tag"></i>Auto Commit</label>
+    <input type="checkbox" id="node-input-autoCommit" style="display: inline-block; width: auto; vertical-align: top;">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-fetchMaxBytes"><i class="icon-tag"></i>Fetch Max Bytes</label>
+    <input type="text" id="node-input-fetchMaxBytes" style="display: inline-block; width: auto; vertical-align: top;" placeholder="1048576">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-connectTimeout"><i class="icon-tag"></i>Kafka client connection timeout (ms)</label>
+    <input type="text" id="node-input-connectTimeout" style="display: inline-block; width: auto; vertical-align: top;" placeholder="60000">
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-delayConsumerCreation"><i class="icon-tag"></i>Delay consumer creation</label>
+      <input type="checkbox" id="node-input-delayConsumerCreation" style="display: inline-block; width: auto; vertical-align: top;" value="delayConsumerCreation">
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-debug"><i class="icon-tag"></i>Debug</label>
+      <input type="checkbox" id="node-input-debug" style="display: inline-block; width: auto; vertical-align: top;" value="debug">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="kafka-in">
+  <p>A simple Kafka consumer node.</p>
+  <p><b>Kafka Host</b>  <i>TODO</i></p>
+  <p><b>Group Id</b> <i>The groupId of consumers.</i></p>
+  <p><b>Topic(s)</b> <i>The topic(s) of message to produce.</i></p>
+  <p><b>Auto Commit</b> <i>Messages are committed automatically.</i></p>
+  <p><b>Fetch Max Bytes</b> <i>TODO</i></p>
+  <p><b>Kafka client conection timeout</b> <i>Zookeeper kafka node client connection timeout (default: 60000 millisecondes)</i></p>
+  <p>Check <b>Delay consumer creation</b><i> to delay the consumer creation</i></p>
+  <p>Check <b>Debug</b> <i> to print extra information to console.</i></p>
+
+  <pre>
+Example:
+Topic(s) = "topic"
+OR
+Topic(s) = "topic1, topic2, topic3"
+  </pre>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('kafka-out',{
+      category: 'output',
+      color: '#FFFFFF',
+      defaults: {
+          kafkaHost:{ value: '', required: true },
+          connectTimeout: { value: '' },
+          topics: { value: '', required: true },
+          debug: { value: '' }
+      },
+      inputs: 1,
+      outputs: 0,
+      icon: 'kafka.png',
+      align: 'right',
+      label: function() {
+          return this.name|| 'kafka-out';
+      }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="kafka-out">
+  <div class="form-row">
+      <label for="node-input-kafkaHost"><i class="icon-tag"></i>Kafka Host</label>
+      <input type="text" id="node-input-kafkaHost" placeholder="127.0.0.1:9092">
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-topics"><i class="icon-tag"></i>Topic(s)</label>
+      <input type="text" id="node-input-topics" placeholder="topic1, topic2, topic3">
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-connectTimeout"><i class="icon-tag"></i>Kafka client connection timeout (ms)</label>
+    <input type="text" id="node-input-connectTimeout" style="display: inline-block; width: auto; vertical-align: top;" placeholder="60000">
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-debug"><i class="icon-tag"></i>Debug</label>
+      <input type="checkbox" id="node-input-debug" style="display: inline-block; width: auto; vertical-align: top;" value="debug">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="kafka-out">
+  <p>A simple Kafka producer node.</p>
+  <p><b>Kafka Host</b> <i>TODO</i></p>
+  <p><b>Topic(s)</b> <i>The topic(s) of message to produce.</i></p>
+  <p><b>Kafka client conection timeout</b> <i>Zookeeper kafka node client connection timeout (default: 60000 millisecondes)</i></p>
+  <p>Check <b>Debug</b> <i> to print extra information to console.</i></p>
+  <pre>
+Example:
+Topic(s) = "topic"
+OR
+Topic(s) = "topic1, topic2, topic3"
+  </pre>
+</script>
