@@ -49,8 +49,8 @@ module.exports = function(RED) {
     const node = this;
 
     const { kafkaHost, topics, debug, connectTimeout } = config;
-    const client = new kafka.Client({ kafkaHost });
-    const producer = kafka.Producer(client);
+    const client = new kafka.KafkaClient({ kafkaHost, connectTimeout });
+    const producer = new kafka.Producer(client);
 
     node.on('input', message => {
       const payloads = topics.join(',').map(topic => ({ topic, messages: message.payload }));
