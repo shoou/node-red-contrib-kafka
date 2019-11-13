@@ -49,7 +49,7 @@ module.exports = function(RED) {
     const node = this;
 
     const { kafkaHost, topics, debug, connectTimeout } = config;
-    const client = new kafka.KafkaClient({ kafkaHost:kafkaHost });
+    const client = new kafka.Client({ kafkaHost });
     const producer = kafka.Producer(client);
 
     node.on('input', message => {
