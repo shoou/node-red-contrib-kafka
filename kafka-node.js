@@ -53,7 +53,7 @@ module.exports = function(RED) {
     const producer = new kafka.Producer(client);
 
     node.on('input', message => {
-      const payloads = topics.join(',').map(topic => ({ topic, messages: message.payload }));
+      const payloads = topics.split(',').map(topic => ({ topic, messages: message.payload }));
 
       producer.send(payloads, (error, data) => {
         if (error) {
