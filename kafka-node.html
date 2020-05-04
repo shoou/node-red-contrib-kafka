@@ -5,7 +5,7 @@
     defaults: {
       kafkaHost: {value: '', required: true },
       topics: { value: '', required: true },
-      groupId: { value: '', required: true },
+      groupId: { value: '' },
       autoCommit: { value: true, required: true },
       fetchMaxBytes: { value: 1024 * 1024 },
       connectTimeout: { value: '' },
@@ -65,11 +65,11 @@
 
 <script type="text/x-red" data-help-name="kafka-in">
   <p>A simple Kafka consumer node.</p>
-  <p><b>Kafka Host</b>  <i>TODO</i></p>
+  <p><b>Kafka Host</b>  <i>Kafka broker/host. For example: localhost:9092</i></p>
   <p><b>Group Id</b> <i>The groupId of consumers.</i></p>
   <p><b>Topic(s)</b> <i>The topic(s) of message to produce.</i></p>
   <p><b>Auto Commit</b> <i>Messages are committed automatically.</i></p>
-  <p><b>Fetch Max Bytes</b> <i>TODO</i></p>
+  <p><b>Fetch Max Bytes</b> <i>The maximum bytes to include in the message set for this partition.</i></p>
   <p><b>Kafka client conection timeout</b> <i>Zookeeper kafka node client connection timeout (default: 60000 millisecondes)</i></p>
   <p>Check <b>Delay consumer creation</b><i> to delay the consumer creation</i></p>
   <p>Check <b>Debug</b> <i> to print extra information to console.</i></p>
@@ -97,7 +97,7 @@ Topic(s) = "topic1, topic2, topic3"
       icon: 'kafka.png',
       align: 'right',
       label: function() {
-          return this.name|| 'kafka-out';
+          return this.name|| 'Kafka-out';
       }
   });
 </script>
@@ -126,7 +126,7 @@ Topic(s) = "topic1, topic2, topic3"
 
 <script type="text/x-red" data-help-name="kafka-out">
   <p>A simple Kafka producer node.</p>
-  <p><b>Kafka Host</b> <i>TODO</i></p>
+  <p><b>Kafka Host</b> <i>Kafka broker/host. For example: localhost:9092</i></p>
   <p><b>Topic(s)</b> <i>The topic(s) of message to produce.</i></p>
   <p><b>Kafka client conection timeout</b> <i>Zookeeper kafka node client connection timeout (default: 60000 millisecondes)</i></p>
   <p>Check <b>Debug</b> <i> to print extra information to console.</i></p>
